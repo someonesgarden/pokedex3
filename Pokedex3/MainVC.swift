@@ -66,7 +66,7 @@ class MainVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
                 let name_jp = row["identifier_jp"]!
                 let pokeType = row["type_jp"]!
                 
-                let poke = Pokemon(name: name,name_jp: name_jp, pokedexId: pokeId, pokeType:pokeType)
+                let poke = Pokemon(name: name,name_jp: name_jp, pokedexId: pokeId, typeJp:pokeType)
                 pokemons.append(poke)
             }
             
@@ -220,7 +220,7 @@ class MainVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
             
             if sortType ==  "type"{
                 lower = searchBar.text!
-                filteredPokemons = pokemons.filter({$0.pokeType.range(of: lower) != nil })
+                filteredPokemons = pokemons.filter({$0.typeJp.range(of: lower) != nil })
             }else if sortType ==  "name"{
                 lower = searchBar.text!.lowercased()
                 filteredPokemons = pokemons.filter({$0.name.range(of: lower) != nil })
@@ -235,11 +235,11 @@ class MainVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
         if sortType ==  "type"{
             
             if sortOrderASC{
-                filteredPokemons = filteredPokemons.sorted{$0.pokeType < $1.pokeType}
-                pokemons         = pokemons.sorted{$0.pokeType < $1.pokeType}
+                filteredPokemons = filteredPokemons.sorted{$0.typeJp < $1.typeJp}
+                pokemons         = pokemons.sorted{$0.typeJp < $1.typeJp}
             }else{
-                filteredPokemons = filteredPokemons.sorted{$0.pokeType > $1.pokeType}
-                pokemons         = pokemons.sorted{$0.pokeType > $1.pokeType}
+                filteredPokemons = filteredPokemons.sorted{$0.typeJp > $1.typeJp}
+                pokemons         = pokemons.sorted{$0.typeJp > $1.typeJp}
             }
         }else if sortType ==  "name"{
             if sortOrderASC{
